@@ -61,7 +61,7 @@
 						<div class="left-topbar">
 							
 
-							<a href="#" class="left-topbar-item">
+							<a href="{% url 'about' %}" class="left-topbar-item">
 								About
 							</a>
 
@@ -111,7 +111,7 @@
 			<div class="wrap-logo no-banner container">
 				<!-- Logo desktop -->		
 				<div class="logo">
-					<a href="index.html"><img src="{% static 'front/images/icons/logo-01.png' %}" alt="LOGO"></a>
+					<a href="{% url 'home' %}"><img src="{% static 'front/images/icons/logo-01.png' %}" alt="LOGO"></a>
 				</div>
 			</div>	
 			
@@ -126,7 +126,7 @@
 
 						<ul class="main-menu justify-content-center">
 							<li class="main-menu-active">
-								<a href="index.html">Home</a>
+								<a href="{% url 'home' %}">Home</a>
 							</li>
 
 							<li class="mega-menu-item">
