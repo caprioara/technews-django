@@ -5,10 +5,9 @@ from .models import Main
 def home(request):
 
 	template_name = "front/home.html"
-	sitename = "Django | Home"
-	context = {'sitename':sitename, 'site':site}
 
-	site = Main.object.filter(pk=1)
+	site = Main.objects.get(pk=2)
+	context = {'site':site}
 
 	return render(request, template_name, context)
 
