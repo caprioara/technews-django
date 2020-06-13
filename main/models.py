@@ -8,5 +8,7 @@ class Main(models.Model):
 	tw = models.TextField(default=" ")
 	yt = models.TextField(default=" ")
 
-	# def __str__(self):
-	# 	return self.name
+	set_name = models.TextField(default=" ")
+
+	def __str__(self):
+		return self.set_name + " | " + str(self.pk)
