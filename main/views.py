@@ -7,6 +7,7 @@ def home(request):
 	template_name = "front/home.html"
 
 	site = Main.objects.get(pk=2)
+
 	context = {'site':site}
 
 	return render(request, template_name, context)
@@ -15,7 +16,13 @@ def home(request):
 def about(request):
 
 	template_name = "front/about.html"
-	sitename = "Django | About"
-	context = {'sitename':sitename}
+
+	site = Main.objects.get(pk=2)
+
+	context = {'site':site}
+
 	return render(request, template_name, context)
 
+
+	# site = Main.objects.get(pk=2).name
+	# sitename = site.name + " | Home"
