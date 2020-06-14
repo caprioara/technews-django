@@ -28,6 +28,7 @@
 				<tr>
 					<th class="text-center">ID</th>
 					<th class="text-center">Image</th>
+					<th>Title</th>
 					<th>Date</th>
 					<th>Category</th>
 					<th>Writer</th>
@@ -36,12 +37,15 @@
 				</tr>
 			</thead>
 			<tbody>
+
+				{% for obj in news %}
 				<tr>
-					<td class="text-center">1</td>
+					<td class="text-center">{{ obj.pk }}</td>
 					<td class="text-center"><img src="{% static 'back/img/placeholders/avatars/avatar15.jpg' %}" alt="avatar" class="img-circle"></td>
-					<td>2018/05/15</td>
+					<td>{{ obj.name }}</td>
+					<td>{{ obj.date }}</td>
 					<td>tech</td>
-					<td>admin</td>
+					<td>{{ obj.writer }}</td>
 					<td>100</td>
 					<td class="text-center">
 						<div class="btn-group">
@@ -50,6 +54,7 @@
 						</div>
 					</td>
 				</tr>
+				{% endfor %}
 				
 			</tbody>
 		</table>

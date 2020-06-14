@@ -17,4 +17,8 @@ def news_list(request):
 
 	template_name = "back/news_list.html"
 
-	return render(request, template_name)
+	news = News.objects.all()
+
+	context = { 'news':news }
+
+	return render(request, template_name, context)
