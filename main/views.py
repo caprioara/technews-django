@@ -25,6 +25,15 @@ def about(request):
 
 	return render(request, template_name, context)
 
+def panel(request):
+
+	template_name = "back/home.html"
+
+	return render(request, template_name)
+
+
+
 
 	# site = Main.objects.get(pk=2).name
 	# sitename = site.name + " | Home"
+
