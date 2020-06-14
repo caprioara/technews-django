@@ -155,7 +155,7 @@
                                         </li>
                                        
                                        	<li>
-                                            <a href="page_layout_static.html">News List</a>
+                                            <a href="{% url 'news_list' %}">News List</a>
                                         </li>
 
                                     </ul>
@@ -261,8 +261,11 @@
         <script src="{% static 'back/https://maps.googleapis.com/maps/api/js?key='%}"></script>
         <script src="{% static 'back/js/helpers/gmaps.min.js'%}"></script>
 
+        {% block javascript %}
+        {% endblock %}
         <!-- Load and execute javascript code used only in this page -->
         <script src="{% static 'back/js/pages/index.js'%}"></script>
         <script>$(function(){ Index.init(); });</script>
+
     </body>
 </html>

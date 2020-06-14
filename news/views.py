@@ -12,3 +12,9 @@ def news_detail(request, word):
 	context = {'news':news, 'site':site}
 
 	return render(request, template_name, context)
+
+def news_list(request):
+
+	template_name = "back/news_list.html"
+
+	return render(request, template_name)

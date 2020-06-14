@@ -67,3 +67,11 @@
                         <!-- END Mini Top Stats Row -->
 
 {% endblock %}
+
+{% block javascript %}
+
+<!-- Load and execute javascript code used only in this page -->
+<script src="{% static 'back/js/pages/index.js'%}"></script>
+<script>$(function(){ Index.init(); });</script>
+
+{% endblock %}
