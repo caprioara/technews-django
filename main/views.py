@@ -27,7 +27,7 @@ def about(request):
 
 def panel(request):
 
-	template_name = "back/home1.html"
+	template_name = "back/home.html"
 
 	return render(request, template_name)
 

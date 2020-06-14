@@ -144,16 +144,19 @@
 
                                 <li class="sidebar-header">
                                     <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
-                                    <span class="sidebar-header-title">Design Kit</span>
+                                    <span class="sidebar-header-title">Site Settings</span>
                                 </li>
                                 
                                 <li>
-                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Page Layouts</span></a>
+                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">News</span></a>
                                     <ul>
                                         <li>
-                                            <a href="page_layout_static.html">Static</a>
+                                            <a href="page_layout_static.html">Add News</a>
                                         </li>
                                        
+                                       	<li>
+                                            <a href="page_layout_static.html">News List</a>
+                                        </li>
 
                                     </ul>
                                 </li>
@@ -216,70 +219,11 @@
                     <!-- Page content -->
                     <div id="page-content">
                         <!-- Dashboard Header -->
-                       
 
-                        <!-- Mini Top Stats Row -->
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-3">
-                                <!-- Widget -->
-                                <a href="page_ready_article.html" class="widget widget-hover-effect1">
-                                    <div class="widget-simple">
-                                        <div class="widget-icon pull-left themed-background-autumn animation-fadeIn">
-                                            <i class="fa fa-file-text"></i>
-                                        </div>
-                                        <h3 class="widget-content text-right animation-pullDown">
-                                            New <strong>Article</strong><br>
-                                            <small>Mountain Trip</small>
-                                        </h3>
-                                    </div>
-                                </a>
-                                <!-- END Widget -->
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <!-- Widget -->
-                                <a href="page_comp_charts.html" class="widget widget-hover-effect1">
-                                    <div class="widget-simple">
-                                        <div class="widget-icon pull-left themed-background-spring animation-fadeIn">
-                                            <i class="gi gi-usd"></i>
-                                        </div>
-                                        <h3 class="widget-content text-right animation-pullDown">
-                                            + <strong>250%</strong><br>
-                                            <small>Sales Today</small>
-                                        </h3>
-                                    </div>
-                                </a>
-                                <!-- END Widget -->
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <!-- Widget -->
-                                <a href="page_ready_inbox.html" class="widget widget-hover-effect1">
-                                    <div class="widget-simple">
-                                        <div class="widget-icon pull-left themed-background-fire animation-fadeIn">
-                                            <i class="gi gi-envelope"></i>
-                                        </div>
-                                        <h3 class="widget-content text-right animation-pullDown">
-                                            5 <strong>Messages</strong>
-                                            <small>Support Center</small>
-                                        </h3>
-                                    </div>
-                                </a>
-                                <!-- END Widget -->
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <!-- Widget -->
-                                <a href="page_comp_gallery.html" class="widget widget-hover-effect1">
-                                    <div class="widget-simple">
-                                        <div class="widget-icon pull-left themed-background-amethyst animation-fadeIn">
-                                            <i class="gi gi-picture"></i>
-                                        </div>
-                                        <h3 class="widget-content text-right animation-pullDown">
-                                            +30 <strong>Photos</strong>
-                                            <small>Gallery</small>
-                                        </h3>
-                                    </div>
-                                </a>
-                        </div>
-                        <!-- END Mini Top Stats Row -->
+
+                    {% block content %}
+
+                    {% endblock %}
 
                     </div>
                     <!-- END Page Content -->
@@ -290,7 +234,7 @@
                             Crafted with <i class="fa fa-heart text-danger"></i> by <a href="http://goo.gl/vNS3I" target="_blank">Caprioara</a>
                         </div>
                         <div class="pull-left">
-                            <span id="year-copy"></span> &copy; <a href="http://goo.gl/TDOSuC" target="_blank">ProUI 3.8</a>
+                            <span id="year-copy"></span> &copy; <a href="#">
                         </div>
                     </footer>
                     <!-- END Footer -->
@@ -304,71 +248,7 @@
         <!-- Scroll to top link, initialized in js/app.js - scrollToTop() -->
         <a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
 
-        <!-- User Settings, modal which opens from Settings link (found in top right user menu) and the Cog link (found in sidebar user info) -->
-        <div id="modal-user-settings" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header text-center">
-                        <h2 class="modal-title"><i class="fa fa-pencil"></i> Settings</h2>
-                    </div>
-                    <!-- END Modal Header -->
 
-                    <!-- Modal Body -->
-                    <div class="modal-body">
-                        <form action="index.html" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" onsubmit="return false;">
-                            <fieldset>
-                                <legend>Vital Info</legend>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Username</label>
-                                    <div class="col-md-8">
-                                        <p class="form-control-static">Admin</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-email">Email</label>
-                                    <div class="col-md-8">
-                                        <input type="email" id="user-settings-email" name="user-settings-email" class="form-control" value="admin@example.com">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-notifications">Email Notifications</label>
-                                    <div class="col-md-8">
-                                        <label class="switch switch-primary">
-                                            <input type="checkbox" id="user-settings-notifications" name="user-settings-notifications" value="1" checked>
-                                            <span></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <fieldset>
-                                <legend>Password Update</legend>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-password">New Password</label>
-                                    <div class="col-md-8">
-                                        <input type="password" id="user-settings-password" name="user-settings-password" class="form-control" placeholder="Please choose a complex one..">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-repassword">Confirm New Password</label>
-                                    <div class="col-md-8">
-                                        <input type="password" id="user-settings-repassword" name="user-settings-repassword" class="form-control" placeholder="..and confirm it!">
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <div class="form-group form-actions">
-                                <div class="col-xs-12 text-right">
-                                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- END Modal Body -->
-                </div>
-            </div>
-        </div>
-        <!-- END User Settings -->
 
         <!-- jQuery, Bootstrap.js, jQuery plugins and Custom JS code -->
         <script src="{% static 'back/js/vendor/jquery.min.js'%}"></script>
