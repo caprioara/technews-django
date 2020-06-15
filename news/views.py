@@ -27,6 +27,7 @@ def news_list(request):
 def news_add(request):
 
 	template_name = "back/news_add.html"
+	template_name_error = "back/error.html"
 
 	if request.method == "POST":
 
@@ -34,7 +35,11 @@ def news_add(request):
 		newscat = request.POST.get('newscat_name')
 		newstxtshort = request.POST.get('newstxtshort_name')
 		newstxtbody = request.POST.get('newstxtbody_name')
-	
-	context = {'newstitle':newstitle, 'newscat':newscat, 'newstxtshort':newstxtshort, 'newstxtbody':newstxtbody}
 
-	return render(request, template_name, context)
+		if newstitle == "" or newscat == "" or newstxtshort == "" or newstxtbody == "":
+			error = "All Fields Required"
+			return render(request, template_name_error, {'error':error} )
+	
+	# context = {'newstitle':newstitle, 'newscat':newscat, 'newstxtshort':newstxtshort, 'newstxtbody':newstxtbody}
+
+	return render(request, template_name)

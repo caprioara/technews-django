@@ -1,0 +1,27 @@
+{% extends "back/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="content-header">
+	<div class="header-section">
+		<h1>
+			<i class="fa fa-table"></i>Error<br><small>All Fields Required</small>
+		</h1>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+<!-- Load and execute javascript code used only in this page -->
+<script src="{% static 'back/js/pages/tablesDatatables.js' %}"></script>
+<script>$(function(){ TablesDatatables.init(); });</script>
+
+{% endblock %}
+
+
+
+
+
