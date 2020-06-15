@@ -22,3 +22,14 @@ def news_list(request):
 	context = { 'news':news }
 
 	return render(request, template_name, context)
+
+
+def news_add(request):
+
+	template_name = "back/news_add.html"
+
+	news = News.objects.all()
+
+	context = { 'news':news }
+
+	return render(request, template_name, context)
