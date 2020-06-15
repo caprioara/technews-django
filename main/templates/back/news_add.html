@@ -21,9 +21,6 @@
 		<div class="block">
 			<!-- Basic Form Elements Title -->
 			<div class="block-title">
-				<div class="block-options pull-right">
-					<a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">No Borders</a>
-				</div>
 				<h2><strong>Add</strong> News</h2>
 			</div>
 			<!-- END Form Elements Title -->
@@ -37,7 +34,14 @@
 						<input type="text" class="form-control" placeholder="News Title">
 					</div>
 					<div class="col-md-6">
-						<input type="text" class="form-control" placeholder="">
+						<select id="example-chosen" name="example-chosen" class="select-chosen" data-placeholder="Choose a Category.." style="width: 250px;">
+                                                        <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                                        <option value="cat1">Category 1</option>
+                                                        <option value="cat2">Category 2</option>
+                                                        <option value="cat3">Category 3</option>
+                                                        
+                                                    </select>
+
 					</div>
 				</div>
 
@@ -52,6 +56,14 @@
 						<textarea type="text" row="5" class="form-control" placeholder="Body text"></textarea>
 					</div>
 				</div>
+
+				<div class="form-group">
+					<div class="col-md-12">
+						<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Submit</button>
+					</div>
+				</div>
+
+				
 
 			</form>
 
