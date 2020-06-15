@@ -39,7 +39,18 @@ def news_add(request):
 		if newstitle == "" or newscat == "" or newstxtshort == "" or newstxtbody == "":
 			error = "All Fields Required"
 			return render(request, template_name_error, {'error':error} )
-	
+
+		obj = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxtbody, date="2019/03/03", image=" ", writer=" ", category=newscat, category_id=0, views=0)
+		obj.save()
+
+		return redirect('news_list')
 	# context = {'newstitle':newstitle, 'newscat':newscat, 'newstxtshort':newstxtshort, 'newstxtbody':newstxtbody}
 
 	return render(request, template_name)
+
+
+
+
+
+
+
