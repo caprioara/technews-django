@@ -31,5 +31,6 @@ def news_add(request):
 	news = News.objects.all()
 
 	context = { 'news':news }
+	print("ruleaza")
 
 	return render(request, template_name, context)
