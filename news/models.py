@@ -9,6 +9,9 @@ class News(models.Model):
 	date = models.CharField(max_length=12)
 	image = models.TextField()
 	writer = models.CharField(max_length=50)
+	category = models.CharField(max_length=50, default=" ")
+	category_id = models.IntegerField(default=0)
+	views = models.IntegerField(default=0)
 
 	def __str__(self):
 		return self.name

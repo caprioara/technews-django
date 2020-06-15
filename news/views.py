@@ -28,9 +28,13 @@ def news_add(request):
 
 	template_name = "back/news_add.html"
 
-	news = News.objects.all()
+	if request.method == "POST":
 
-	context = { 'news':news }
-	print("ruleaza")
+		newstitle = request.POST.get('newstitle_name')
+		newscat = request.POST.get('newscat_name')
+		newstxtshort = request.POST.get('newstxtshort_name')
+		newstxtbody = request.POST.get('newstxtbody_name')
+	
+	context = {'newstitle':newstitle, 'newscat':newscat, 'newstxtshort':newstxtshort, 'newstxtbody':newstxtbody}
 
 	return render(request, template_name, context)
