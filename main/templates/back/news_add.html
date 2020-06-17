@@ -1,5 +1,6 @@
 {% extends "back/base.html" %}
 {% load staticfiles %}
+{% load martortags %}
 
 {% block content %}
 
@@ -44,6 +45,19 @@
 
 					</div>
 				</div>
+
+				<div class="form-group">
+
+					<div class="col-md-6">
+						{{ field_name|safe_markdown }}
+
+					</div>
+
+					<div class="col-md-6">
+						{{ post.description|safe_markdown }}
+					</div>
+				</div>
+
 
 				<div class="form-group">
 					<div class="col-md-12">

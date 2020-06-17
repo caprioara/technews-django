@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from martor.models import MartorField
 from django.db import models
 
 class News(models.Model):
@@ -17,3 +18,9 @@ class News(models.Model):
 
 	def __str__(self):
 		return self.name
+
+
+class Post(models.Model):
+	description = MartorField()
+
+
