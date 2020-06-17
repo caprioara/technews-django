@@ -29,10 +29,9 @@ def news_list(request):
 
 def news_add(request):
 
-	print("---------------------")
-
 	# now = datetime.datetime.now() - datetime.timedelta(days=10)
 	now = datetime.datetime.now()
+	time = str(now.hour) + ":" + str(now.minute)
 
 	year = now.year
 	month = now.month
@@ -43,8 +42,7 @@ def news_add(request):
 	if len(str(month)) == 1:
 		month = "0" + str(month)
 
-	print(str(year) + "/" + str(month) + "/" + str(day))
-	print("---------------------")
+	today = str(year) + "/" + str(month) + "/" + str(day)
 
 	template_name = "back/news_add.html"
 	template_name_error = "back/error.html"
@@ -70,7 +68,7 @@ def news_add(request):
 
 				if myfile.size < 8000000:
 
-					obj = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxtbody, date="2019/03/03", imageName=filename, imageUrl=url, writer=" ", category=newscat, category_id=0, views=0)
+					obj = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxtbody, date=today, time=time, imageName=filename, imageUrl=url, writer=" ", category=newscat, category_id=0, views=0)
 					obj.save()
 					return redirect('news_list')
 
