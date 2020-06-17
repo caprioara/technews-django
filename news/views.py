@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import News
 from main.models import Main
 from django.core.files.storage import FileSystemStorage
+import datetime
 
 
 def news_detail(request, word):
@@ -27,6 +28,23 @@ def news_list(request):
 
 
 def news_add(request):
+
+	print("---------------------")
+
+	now = datetime.datetime.now()
+	print(now)
+
+	year = now.year
+	month = now.month
+	day = now.day
+
+	if len(str(day)) == 1:
+		day = "0" + str(day)
+	if len(str(month)) == 1:
+		month = "0" + str(month)
+
+	print(year, month, day)
+	print("---------------------")
 
 	template_name = "back/news_add.html"
 	template_name_error = "back/error.html"
