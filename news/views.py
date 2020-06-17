@@ -73,11 +73,16 @@ def news_add(request):
 					return redirect('news_list')
 
 				else: 
+					
+					fs = FileSystemStorage()
+					fs.delete(filename)
 
 					error = "Your Files Is Bigger Than 8 MB"
 					return render(request, template_name_error)
 
 			else:
+				fs = FileSystemStorage()
+				fs.delete(filename)
 
 				error = "Your File Not Supported"
 				return render(request, template_name_error, {'error': error})
@@ -91,8 +96,19 @@ def news_add(request):
 
 def news_delete(request, pk):
 
-	obj = News.objects.get(pk=pk)
-	obj.delete()
+	try: 
+
+		obj = News.objects.get(pk=pk)
+
+		fs = FileSystemStorage()
+		fs.delete(obj.imageName)
+
+		obj.delete()
+
+	except:
+
+		error = "Something Wrong"
+		return render(request, template_name_error, {'error': error})
 
 	return redirect('news_list')
 
