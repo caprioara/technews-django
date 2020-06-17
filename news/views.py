@@ -50,9 +50,16 @@ def news_add(request):
 
 			if str(myfile.content_type).startswith('image'):
 
-				obj = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxtbody, date="2019/03/03", imageName=filename, imageUrl=url, writer=" ", category=newscat, category_id=0, views=0)
-				obj.save()
-				return redirect('news_list')
+				if myfile.size < 8000000:
+
+					obj = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxtbody, date="2019/03/03", imageName=filename, imageUrl=url, writer=" ", category=newscat, category_id=0, views=0)
+					obj.save()
+					return redirect('news_list')
+
+				else: 
+
+					error = "Your Files Is Bigger Than 8 MB"
+					return render(request, template_name_error)
 
 			else:
 
