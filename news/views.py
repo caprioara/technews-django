@@ -31,8 +31,8 @@ def news_add(request):
 
 	print("---------------------")
 
+	# now = datetime.datetime.now() - datetime.timedelta(days=10)
 	now = datetime.datetime.now()
-	print(now)
 
 	year = now.year
 	month = now.month
@@ -43,7 +43,7 @@ def news_add(request):
 	if len(str(month)) == 1:
 		month = "0" + str(month)
 
-	print(year, month, day)
+	print(str(year) + "/" + str(month) + "/" + str(day))
 	print("---------------------")
 
 	template_name = "back/news_add.html"
