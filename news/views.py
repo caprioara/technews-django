@@ -42,17 +42,23 @@ def news_add(request):
 			error = "All Fields Required"
 			return render(request, template_name_error, {'error':error})
 
-		myfile = request.FILES['myfile']
-		fs = FileSystemStorage()
-		filename = fs.save(myfile.name, myfile)
-		url = fs.url(filename)
+		try:
+			myfile = request.FILES['myfile']
+			fs = FileSystemStorage()
+			filename = fs.save(myfile.name, myfile)
+			url = fs.url(filename)
 
 
-		obj = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxtbody, date="2019/03/03", imageName=filename, imageUrl=url, writer=" ", category=newscat, category_id=0, views=0)
-		obj.save()
+			obj = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxtbody, date="2019/03/03", imageName=filename, imageUrl=url, writer=" ", category=newscat, category_id=0, views=0)
+			obj.save()
 
-		return redirect('news_list')
-	# context = {'newstitle':newstitle, 'newscat':newscat, 'newstxtshort':newstxtshort, 'newstxtbody':newstxtbody}
+			return redirect('news_list')
+
+
+		except:
+
+			error = "Please imput your image"
+			return render(request, template_name_error, {'error': error})
 
 	return render(request, template_name)
 
