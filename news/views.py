@@ -89,6 +89,13 @@ def news_add(request):
 
 	return render(request, template_name)
 
+def news_delete(request, pk):
+
+	obj = News.objects.get(pk=pk)
+	obj.delete()
+
+	return redirect('news_list')
+
 
 
 
