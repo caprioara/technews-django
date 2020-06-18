@@ -6,7 +6,7 @@ class News(models.Model):
 
 	name = models.CharField(max_length=50)
 	short_txt = models.TextField()
-	body_txt = models.TextField()
+	body_txt = MartorField()
 	date = models.CharField(max_length=12)
 	time = models.CharField(max_length=12, default="00:00")
 	imageName = models.TextField()
@@ -19,8 +19,5 @@ class News(models.Model):
 	def __str__(self):
 		return self.name
 
-
-class Post(models.Model):
-	description = MartorField()
 
 
