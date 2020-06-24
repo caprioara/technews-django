@@ -3,6 +3,7 @@ from .models import News
 from main.models import Main
 from django.core.files.storage import FileSystemStorage
 import datetime
+from .forms import NewsForm
 
 
 def news_detail(request, word):
@@ -46,6 +47,8 @@ def news_add(request):
 
 	template_name = "back/news_add.html"
 	template_name_error = "back/error.html"
+
+	form = NewsForm(request)
 
 	if request.method == "POST":
 

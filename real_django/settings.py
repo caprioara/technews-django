@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'main',
     'news',
+    'markdownx',
 ]
 
 MIDDLEWARE = [
@@ -125,6 +126,31 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MARKDOWNX_MARKDOWNIFY_FUNCTION = 'markdownx.utils.markdownify'
+MARKDOWNX_MARKDOWN_EXTENSIONS = [
+    'markdown.extensions.extra'
+]
+MARKDOWNX_MARKDOWN_EXTENSION_CONFIGS = {
+    'extension_name_1': {
+        'option_1': 'value_1'
+    }
+}
+MARKDOWNX_URLS_PATH = '/markdownx/markdownify/'
+MARKDOWNX_UPLOAD_URLS_PATH = '/markdownx/upload/'
+MARKDOWNX_MEDIA_PATH = 'markdownx/'
+MARKDOWNX_UPLOAD_CONTENT_TYPES = ['image/jpeg', 'image/png', 'image/svg+xml']
+MARKDOWNX_IMAGE_MAX_SIZE = {
+    'size': (500, 500),
+    'quality': 90
+}
+MARKDOWNX_SVG_JAVASCRIPT_PROTECTION = True
+
+MARKDOWNX_EDITOR_RESIZABLE = True
+
+MARKDOWNX_SERVER_CALL_LATENCY = 500
+
+
 
 
 
