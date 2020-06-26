@@ -128,6 +128,67 @@ def news_edit(request, pk):
 	news = News.objects.get(pk=pk)
 	cat = SubCat.objects.all()
 
+	if request.method == "POST":
+
+		newstitle = request.POST.get('newstitle_name')
+		newscat = request.POST.get('newscat_name')
+		newstxtshort = request.POST.get('newstxtshort_name')
+		newstxtbody = request.POST.get('newstxtbody_name')
+		newsid = request.POST.get('newscat_name')
+
+		if newstitle == "" or newscat == "" or newstxtshort == "" or newstxtbody == "":
+			error = "All Fields Required"
+			return render(request, template_name_error, {'error':error})
+
+		try:
+			myfile = request.FILES['myfile']
+			fs = FileSystemStorage()
+			filename = fs.save(myfile.name, myfile)
+			url = fs.url(filename)
+
+			if str(myfile.content_type).startswith('image'):
+
+				if myfile.size < 8000000:
+
+					newsname = SubCat.objects.get(pk=newsid).name
+
+					fss = FileSystemStorage()
+					fss.delete(obj.imageName)
+
+					obj = News.objects.get(pk=pk)
+					obj.name = newstitle_name
+					obj.short_txt = newstxtshort_name
+					obj.body_txt = newstxtbody_name
+					obj.imageName = filename
+					obj.imageUrl = url
+					obj.writer = " - "
+					obj.catname = newsname
+					obk.catid = newsid
+
+					obj.save()
+					return redirect('news_list')
+
+
+				else: 
+					
+					fs = FileSystemStorage()
+					fs.delete(filename)
+
+					error = "Your Files Is Bigger Than 8 MB"
+					return render(request, template_name_error)
+
+			else:
+				fs = FileSystemStorage()
+				fs.delete(filename)
+
+				error = "Your File Not Supported"
+				return render(request, template_name_error, {'error': error})
+
+		except:
+
+			error = "Please imput your image"
+			return render(request, template_name_error, {'error': error})
+
 	context = {'pk':pk, 'news':news, 'cat':cat }
 
 	return render(request, template_name, context)
