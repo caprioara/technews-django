@@ -127,28 +127,35 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-MARKDOWNX_MARKDOWNIFY_FUNCTION = 'markdownx.utils.markdownify'
+
+MARKDOWNX_MARKDOWNIFY_FUNCTION = 'markdownx.utils.markdownify' # Default function that compiles markdown using defined extensions
+
+
+MARKDOWNX_MARKDOWN_EXTENSION_CONFIGS = {}
+
+# Markdown urls
+MARKDOWNX_URLS_PATH = '/markdownx/markdownify/' # Path that returns compiled markdown text. Change it to your custom app url which could i.e. enable you todo some additional work with compiled markdown text. More info at "Custom MARKDOWNX_URLS_PATH / Further markdownified text manipulations" below.
+MARKDOWNX_UPLOAD_URLS_PATH = '/markdownx/upload/' # Path that accepts file uploads, returns markdown notation of the image.
+
+# Media path
+MARKDOWNX_MEDIA_PATH = 'markdownx/' # Subdirectory, where images will be stored in MEDIA_ROOT folder
+
+# Image
+MARKDOWNX_UPLOAD_MAX_SIZE = 52428800 # 50MB # Maximum file size
+MARKDOWNX_UPLOAD_CONTENT_TYPES = ['image/jpeg', 'image/png'] # Acceptable file types
+MARKDOWNX_IMAGE_MAX_SIZE = {'size': (500, 500), 'quality': 90,} # Different options describing final image size, compression etc. after upload.
+
+# Editor
+MARKDOWNX_EDITOR_RESIZABLE = True # Update editor's height to inner content height while typing
+
+
+# Markdown extensions
 MARKDOWNX_MARKDOWN_EXTENSIONS = [
-    'markdown.extensions.extra'
+    'markdown.extensions.smarty',
+    'markdown.extensions.sane_lists',
+    'markdown.extensions.nl2br',
+    'markdown.extensions.extra',
 ]
-MARKDOWNX_MARKDOWN_EXTENSION_CONFIGS = {
-    'extension_name_1': {
-        'option_1': 'value_1'
-    }
-}
-MARKDOWNX_URLS_PATH = '/markdownx/markdownify/'
-MARKDOWNX_UPLOAD_URLS_PATH = '/markdownx/upload/'
-MARKDOWNX_MEDIA_PATH = 'markdownx/'
-MARKDOWNX_UPLOAD_CONTENT_TYPES = ['image/jpeg', 'image/png', 'image/svg+xml']
-MARKDOWNX_IMAGE_MAX_SIZE = {
-    'size': (500, 500),
-    'quality': 90
-}
-MARKDOWNX_SVG_JAVASCRIPT_PROTECTION = True
-
-MARKDOWNX_EDITOR_RESIZABLE = True
-
-MARKDOWNX_SERVER_CALL_LATENCY = 500
 
 
 

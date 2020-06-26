@@ -48,14 +48,12 @@ def news_add(request):
 	template_name = "back/news_add.html"
 	template_name_error = "back/error.html"
 
-	form = NewsForm(request)
-
 	if request.method == "POST":
 
 		newstitle = request.POST.get('newstitle_name')
 		newscat = request.POST.get('newscat_name')
 		newstxtshort = request.POST.get('newstxtshort_name')
-		newstxtbody = request.POST.get('newstxtbody_name')
+		newstxtbody = request.POST.get('newsbody')
 
 		if newstitle == "" or newscat == "" or newstxtshort == "" or newstxtbody == "":
 			error = "All Fields Required"

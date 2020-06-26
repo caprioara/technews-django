@@ -1,6 +1,5 @@
 from markdownx.fields import MarkdownxFormField
 from django import forms
 
-
-class FormNews(forms.Form):
+class NewsForm(forms.Form):
     body_txt = MarkdownxFormField()

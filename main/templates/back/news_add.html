@@ -29,10 +29,10 @@
 			<form action="{% url 'news_add' %}" method="POST" enctype="multipart/form-data" class="form-horizontal form-bordered">
 				{% csrf_token %}
 				<div class="form-group">
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<input type="text" id="newstitle" name="newstitle_name" class="form-control" placeholder="News Title">
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<select id="newscat" name="newscat_name" class="select-chosen" data-placeholder="Choose a Category.." style="width: 250px;">
 							<option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
 							<option value="RX">AMD RX</option>
@@ -52,16 +52,22 @@
 				</div>
 
 				<div class="form-group">
-					<div class="col-md-6">
-						<textarea type="text" id="newstxtbody" name="newstxtbody_name" row="10" class="form-control" placeholder="Body text"></textarea>
-					</div>
-					<div class="col-md-6">
-						{{forms}}
-					</div>
-				</div>
+                  <div class="col-md-12" id="newsbody" name="newsbody">
+                    <div class="markdownx" style="display:inline-block"> 
+                        <textarea name="body" cols="60" rows="10" required="" id="body" class="markdownx-editor" data-markdownx-editor-resizable="" data-markdownx-urls-path="/markdownx/markdownify/" data-markdownx-upload-urls-path="/markdownx/upload/" data-markdownx-latency="500" style="transition: opacity 1s ease;"></textarea>
+                            {{ form }}
+                    <div class="markdownx-preview col-md-12">
+                    	{{ form.media }}
+                    </div>
+                        
+                    </div>
+
+                  </div>
+
+                </div>
 
 				<div class="form-group">
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<input type="file" id="myfile" name="myfile" row="10" class="form-control" placeholder="Body text"></textarea>
 					</div>
 				</div>
@@ -76,6 +82,7 @@
 				
 
 			</form>
+			{{ form.media }}
 
 			<!-- END Basic Form Elements Content -->
 		</div>
