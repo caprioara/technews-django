@@ -26,6 +26,12 @@ def cat_add(request):
 			error = "All Fields Requirded"
 			return render(request, template_name_error, {'error': error})
 
+		if len(Cat.objects.filter(name=name)) != 0:
+
+			error = "This Name Used Before"
+			return render(request, template_name_error, {'error': error})
+
+
 		b = Cat(name=name)
 		b.save()
 
