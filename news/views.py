@@ -4,6 +4,7 @@ from main.models import Main
 from django.core.files.storage import FileSystemStorage
 import datetime
 from subcat.models import SubCat
+# from cat.models import Cat
 
 
 def news_detail(request, word):
@@ -120,6 +121,16 @@ def news_delete(request, pk):
 
 	return redirect('news_list')
 
+def news_edit(request, pk):
+
+	template_name = "back/news_edit.html"
+
+	news = News.objects.get(pk=pk)
+	cat = SubCat.objects.all()
+
+	context = {'pk':pk, 'news':news, 'cat':cat }
+
+	return render(request, template_name, context)
 
 
 
