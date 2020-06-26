@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import SubCat
+from cat.models import Cat
 
 def subcat_list(request): 
 
@@ -17,9 +18,12 @@ def subcat_add(request):
 	template_name = "back/subcat_add.html"
 	template_name_error = "back/error.html"
 
+	cat = Cat.objects.all()
+
 	if request.method == 'POST':
 
 		name = request.POST.get('name') # name -> name field
+		catid = request.POST.get('cat')
 
 		if name == "":
 
@@ -31,7 +35,12 @@ def subcat_add(request):
 			error = "This Name Used Before"
 			return render(request, template_name_error, {'error': error})
 
+		catname = Cat.ojects.get(pk=catid).name
 
+		b = SubCat(name=name, catname = catname, catid=catid)
+		b.save()
+		return redirect('subcat_list')
 
+	context = {'cat':cat}
 
-	return render(request, template_name)
+	return render(request, template_name,context)
