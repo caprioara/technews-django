@@ -3,6 +3,7 @@ from .models import News
 from main.models import Main
 from django.core.files.storage import FileSystemStorage
 import datetime
+from subcat.models import SubCat
 
 
 def news_detail(request, word):
@@ -44,6 +45,8 @@ def news_add(request):
 
 	today = str(year) + "/" + str(month) + "/" + str(day)
 
+	cat = SubCat.objects.all()
+
 	template_name = "back/news_add.html"
 	template_name_error = "back/error.html"
 
@@ -53,6 +56,7 @@ def news_add(request):
 		newscat = request.POST.get('newscat_name')
 		newstxtshort = request.POST.get('newstxtshort_name')
 		newstxtbody = request.POST.get('newstxtbody_name')
+		newsid = request.POST.get('newscat_name')
 
 		if newstitle == "" or newscat == "" or newstxtshort == "" or newstxtbody == "":
 			error = "All Fields Required"
@@ -68,7 +72,9 @@ def news_add(request):
 
 				if myfile.size < 8000000:
 
-					obj = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxtbody, date=today, time=time, imageName=filename, imageUrl=url, writer=" ", category=newscat, category_id=0, views=0)
+					newsname = SubCat.objects.get(pk=newsid).name
+
+					obj = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxtbody, date=today, time=time, imageName=filename, imageUrl=url, writer=" ", category=newsname, category_id=newsid, views=0)
 					obj.save()
 					return redirect('news_list')
 
@@ -92,7 +98,9 @@ def news_add(request):
 			error = "Please imput your image"
 			return render(request, template_name_error, {'error': error})
 
-	return render(request, template_name)
+	context = {'cat':cat}
+
+	return render(request, template_name, context)
 
 def news_delete(request, pk):
 
