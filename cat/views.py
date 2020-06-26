@@ -10,3 +10,25 @@ def cat_list(request):
 	context = {'cat':cat}
 
 	return render(request, template_name, context)
+
+
+def cat_add(request): 
+
+	template_name = "back/cat_add.html"
+	template_name_error = "back/error.html"
+
+	if request.method == 'POST':
+
+		name = request.POST.get('name') # name -> name field
+
+		if name == "":
+
+			error = "All Fields Requirded"
+			return render(request, template_name_error, {'error': error})
+
+		b = Cat(name=name)
+		b.save()
+
+		return redirect('cat_list')
+
+	return render(request, template_name)
