@@ -35,7 +35,7 @@ def subcat_add(request):
 			error = "This Name Used Before"
 			return render(request, template_name_error, {'error': error})
 
-		catname = Cat.ojects.get(pk=catid).name
+		catname = Cat.objects.get(pk=catid).name
 
 		b = SubCat(name=name, catname = catname, catid=catid)
 		b.save()
