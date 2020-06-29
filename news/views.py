@@ -138,7 +138,7 @@ def news_edit(request, pk):
 
 		if newstitle == "" or newscat == "" or newstxtshort == "" or newstxtbody == "":
 			error = "All Fields Required"
-			return render(request, template_name_error, {'error':error})
+			return render(request, template_name_error, {'error': error})
 
 		try:
 			myfile = request.FILES['myfile']
@@ -152,18 +152,18 @@ def news_edit(request, pk):
 
 					newsname = SubCat.objects.get(pk=newsid).name
 
+					obj = News.objects.get(pk=pk)
+
 					fss = FileSystemStorage()
 					fss.delete(obj.imageName)
 
-					obj = News.objects.get(pk=pk)
-					obj.name = newstitle_name
-					obj.short_txt = newstxtshort_name
-					obj.body_txt = newstxtbody_name
+					obj.name = newstitle
+					obj.short_txt = newstxtshort
+					obj.body_txt = newstxtbody
 					obj.imageName = filename
 					obj.imageUrl = url
-					obj.writer = " - "
-					obj.catname = newsname
-					obk.catid = newsid
+					obj.catname = newscat
+					obj.catid = newsid
 
 					obj.save()
 					return redirect('news_list')
@@ -186,8 +186,19 @@ def news_edit(request, pk):
 
 		except:
 
-			error = "Please imput your image"
-			return render(request, template_name_error, {'error': error})
+			newsname = SubCat.objects.get(pk=newsid).name
+
+			obj = News.objects.get(pk=pk)
+
+
+			obj.name = newstitle
+			obj.short_txt = newstxtshort
+			obj.body_txt = newstxtbody
+			obj.catname = newscat
+			obj.catid = newsid
+
+			obj.save()
+			return redirect('news_list')
 
 	context = {'pk':pk, 'news':news, 'cat':cat }
 
