@@ -1,5 +1,11 @@
-{% extends "back/base.html" %}
+ {% extends "back/base.html" %}
 {% load staticfiles %}
+
+{% block headblock %}
+
+<script src="{% static 'ckeditor5/ckeditor.js' %}"></script>
+
+{% endblock %}
 
 {% block content %}
 
@@ -55,6 +61,19 @@
 						<textarea type="text" id="newstxtbody" name="newstxtbody_name" row="10" class="form-control" placeholder="Body text">{{news.body_txt}}</textarea>
 					</div>
 				</div>
+
+				<script>
+					ClassicEditor
+					.create( document.querySelector( '#newstxtbody' ), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            } )
+					.then( newstxtbody => {
+						window.editor = editor;
+					} )
+					.catch( err => {
+						console.error( err.stack );
+					} );
+				</script>
 
 				<div class="form-group">
 					<div class="col-md-6">
