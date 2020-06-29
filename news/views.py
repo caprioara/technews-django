@@ -124,6 +124,12 @@ def news_delete(request, pk):
 def news_edit(request, pk):
 
 	template_name = "back/news_edit.html"
+	template_name_error = "back/error.html"
+	
+	if len(News.objects.filter(pk=pk)) == 0:
+		error = "News Not Found"
+		return render(request, template_name_error, {'error': error})
+
 
 	news = News.objects.get(pk=pk)
 	cat = SubCat.objects.all()
