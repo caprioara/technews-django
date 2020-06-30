@@ -4,7 +4,7 @@ from main.models import Main
 from django.core.files.storage import FileSystemStorage
 import datetime
 from subcat.models import SubCat
-# from cat.models import Cat
+from cat.models import Cat
 
 
 def news_detail(request, word):
@@ -74,9 +74,16 @@ def news_add(request):
 				if myfile.size < 8000000:
 
 					newsname = SubCat.objects.get(pk=newsid).name
+					ocatid = SubCat.objects.get(pk=newsid).catid
 
-					obj = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxtbody, date=today, time=time, imageName=filename, imageUrl=url, writer=" ", category=newsname, category_id=newsid, views=0)
+					obj = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxtbody, date=today, time=time, imageName=filename, imageUrl=url, writer=" ", category=newsname, category_id=newsid, views=0, ocatid=ocatid)
 					obj.save()
+
+					count = len(News.objects.filter(ocatid=ocatid))
+					b = Cat.objects.get(pk=ocatid)
+					b.count = count
+					b.save()
+
 					return redirect('news_list')
 
 				else: 
