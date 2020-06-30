@@ -8,7 +8,7 @@ def home(request):
 	template_name = "front/home.html"
 
 	site = Main.objects.get(pk=2)
-	news = News.objects.all()
+	news = News.objects.all().order_by('-pk')
 
 	context = {'site':site, 'news':news}
 
