@@ -74,6 +74,7 @@
 				<div class="p-r-10 p-rl-0-sr991 p-b-20">
 					
 					{% for newscat in cat %}
+					{% if newscat.count != 0 %}
 					<!-- Life Style  -->
 					<div class="p-b-25 m-r--10 m-r-0-sr991">
 						<div class="how2 how2-cl5 flex-s-c m-r-10 m-r-0-sr991">
@@ -179,6 +180,7 @@
 							</div>
 						</div>
 					</div>
+					{% endif %}
 					{% endfor %}
 				</div>
 			</div>
