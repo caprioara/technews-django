@@ -33,7 +33,16 @@ def news_add(request):
 
 	# now = datetime.datetime.now() - datetime.timedelta(days=10)
 	now = datetime.datetime.now()
-	time = str(now.hour) + ":" + str(now.minute)
+
+	ora = now.hour
+	min = now.minute
+
+	if len(str(ora)) == 1:
+		ora = "0" + str(ora)
+	if len(str(min)) == 1:
+		min = "0" + str(min)
+
+	time = str(ora) + ":" + str(min)
 
 	year = now.year
 	month = now.month
@@ -76,13 +85,13 @@ def news_add(request):
 					newsname = SubCat.objects.get(pk=newsid).name
 					ocatid = SubCat.objects.get(pk=newsid).catid
 
-					obj = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxtbody, date=today, time=time, imageName=filename, imageUrl=url, writer=" ", category=newsname, category_id=newsid, views=0, ocatid=ocatid)
+					obj = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxtbody, date=today, time=time, imageName=filename, imageUrl=url, writer="-", category=newsname, category_id=newsid, views=0, ocategory_id=ocatid)
 					obj.save()
 
-					count = len(News.objects.filter(ocatid=ocatid))
-					b = Cat.objects.get(pk=ocatid)
-					b.count = count
-					b.save()
+					count = len(News.objects.filter(ocategory_id=ocatid))
+					obj = Cat.objects.get(pk=ocatid)
+					obj.count = count
+					obj.save()
 
 					return redirect('news_list')
 
@@ -119,7 +128,16 @@ def news_delete(request, pk):
 		fs = FileSystemStorage()
 		fs.delete(obj.imageName)
 
+		ocatid = News.objects.get(pk=pk).ocategory_id
+
 		obj.delete()
+
+		count = len(News.objects.filter(ocategory_id=ocatid))
+
+		m = Cat.objects.get(pk=ocatid)
+		m.count = count
+		m.save()
+
 
 	except:
 
