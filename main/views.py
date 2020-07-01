@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Main
 from news.models import News
 from cat.models import Cat
+from subcat.models import SubCat
 
 
 def home(request):
@@ -11,8 +12,9 @@ def home(request):
 	site = Main.objects.get(pk=2)
 	news = News.objects.all().order_by('-pk')
 	cat = Cat.objects.all()
+	subcat = SubCat.objects.all()
 
-	context = {'site':site, 'news':news, 'cat':cat}
+	context = {'site':site, 'news':news, 'cat':cat, 'subcat':subcat}
 
 	return render(request, template_name, context)
 
