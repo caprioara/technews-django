@@ -3,6 +3,7 @@ from .models import Main
 from news.models import News
 from cat.models import Cat
 from subcat.models import SubCat
+from django.contrib.auth import authenticate, login, logout
 
 
 def home(request):
@@ -48,7 +49,14 @@ def mylogin(request):
 		uuser = request.POST.get('username')
 		upass = request.POST.get('password')
 
-		print(uuser, upass)
+		if uuser != "" and upass != "":
+
+			user = authenticate(username = uuser, password = upass)
+
+			if user != None:
+
+				login(request, user)
+				return redirect('panel')
 
 
 	return render(request, 'front/login.html')
