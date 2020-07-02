@@ -13,8 +13,9 @@ def home(request):
 	news = News.objects.all().order_by('-pk')
 	cat = Cat.objects.all()
 	subcat = SubCat.objects.all()
+	lastnews = News.objects.all().order_by('-pk')[:3]
 
-	context = {'site':site, 'news':news, 'cat':cat, 'subcat':subcat}
+	context = {'site':site, 'news':news, 'cat':cat, 'subcat':subcat, 'lastnews':lastnews}
 
 	return render(request, template_name, context)
 
