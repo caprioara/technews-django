@@ -44,6 +44,8 @@ def panel(request):
 
 def mylogin(request):
 
+	template_name = "front/login.html"
+
 	if request.method == 'POST':
 
 		uuser = request.POST.get('username')
@@ -59,13 +61,25 @@ def mylogin(request):
 				return redirect('panel')
 
 
-	return render(request, 'front/login.html')
+	return render(request, template_name)
 
 def mylogout(request):
 
 	logout(request)
 
 	return redirect('mylogin')
+
+
+def site_settings(request):
+
+	template_name = "back/settings.html"
+
+	# login check start
+	if not request.user.is_authenticated:
+		return redirect('mylogin')
+	# login check end
+
+	return render(request, template_name)
 
 
 	# site = Main.objects.get(pk=2).name
