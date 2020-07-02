@@ -34,10 +34,21 @@ def panel(request):
 
 	template_name = "back/home.html"
 
+	# login check start
+	if not request.user.is_authenticated:
+		return redirect('mylogin')
+	# login check end
+
 	return render(request, template_name)
 
-def my_login(request):
+def mylogin(request):
 
+	if request.method == 'POST':
+
+		uuser = request.POST.get('username')
+		upass = request.POST.get('password')
+
+		print(uuser, upass)
 
 
 	return render(request, 'front/login.html')

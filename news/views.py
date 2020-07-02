@@ -7,9 +7,15 @@ from subcat.models import SubCat
 from cat.models import Cat
 
 
+
 def news_detail(request, word):
 
 	template_name = "front/news_detail.html"
+
+	# login check start
+	if not request.user.is_authenticated:
+		return redirect('mylogin')
+	# login check end
 
 	news = News.objects.filter(name=word)
 	site = Main.objects.get(pk=2)
@@ -22,6 +28,11 @@ def news_list(request):
 
 	template_name = "back/news_list.html"
 
+	# login check start
+	if not request.user.is_authenticated:
+		return redirect('mylogin')
+	# login check end
+
 	news = News.objects.all()
 
 	context = { 'news':news }
@@ -30,6 +41,11 @@ def news_list(request):
 
 
 def news_add(request):
+
+	# login check start
+	if not request.user.is_authenticated:
+		return redirect('mylogin')
+	# login check end
 
 	# now = datetime.datetime.now() - datetime.timedelta(days=10)
 	now = datetime.datetime.now()
@@ -121,6 +137,11 @@ def news_add(request):
 
 def news_delete(request, pk):
 
+	# login check start
+	if not request.user.is_authenticated:
+		return redirect('mylogin')
+	# login check end
+
 	try: 
 
 		obj = News.objects.get(pk=pk)
@@ -147,6 +168,11 @@ def news_delete(request, pk):
 	return redirect('news_list')
 
 def news_edit(request, pk):
+
+	# login check start
+	if not request.user.is_authenticated:
+		return redirect('mylogin')
+	# login check end
 
 	template_name = "back/news_edit.html"
 	template_name_error = "back/error.html"

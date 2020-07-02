@@ -5,6 +5,11 @@ def cat_list(request):
 
 	template_name = "back/cat_list.html"
 
+	# login check start
+	if not request.user.is_authenticated:
+		return redirect('mylogin')
+	# login check end
+
 	cat = Cat.objects.all()
 
 	context = {'cat':cat}
@@ -16,6 +21,11 @@ def cat_add(request):
 
 	template_name = "back/cat_add.html"
 	template_name_error = "back/error.html"
+
+	# login check start
+	if not request.user.is_authenticated:
+		return redirect('mylogin')
+	# login check end
 
 	if request.method == 'POST':
 
@@ -38,3 +48,7 @@ def cat_add(request):
 		return redirect('cat_list')
 
 	return render(request, template_name)
+
+
+
+	

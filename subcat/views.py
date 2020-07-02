@@ -6,6 +6,11 @@ def subcat_list(request):
 
 	template_name = "back/subcat_list.html"
 
+	# login check start
+	if not request.user.is_authenticated:
+		return redirect('mylogin')
+	# login check end
+
 	subcat = SubCat.objects.all()
 
 	context = {'subcat':subcat}
@@ -17,6 +22,11 @@ def subcat_add(request):
 
 	template_name = "back/subcat_add.html"
 	template_name_error = "back/error.html"
+
+	# login check start
+	if not request.user.is_authenticated:
+		return redirect('mylogin')
+	# login check end
 
 	cat = Cat.objects.all()
 
