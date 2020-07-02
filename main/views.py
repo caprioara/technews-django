@@ -61,7 +61,11 @@ def mylogin(request):
 
 	return render(request, 'front/login.html')
 
+def mylogout(request):
 
+	logout(request)
+
+	return redirect('mylogin')
 
 
 	# site = Main.objects.get(pk=2).name
